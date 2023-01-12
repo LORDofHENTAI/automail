@@ -58,8 +58,12 @@
             <mat-label>Email организации</mat-label>
             <input matInput [(ngModel)]="emailOrg">
         </mat-form-field>
-        <mat-checkbox class="example-margin" [(ngModel)]="mailStatus">Рассылка активна</mat-checkbox>
-        <button mat-raised-button *ngIf="switchButton">Добавить</button>
-        <button mat-raised-button style="color: green;" *ngIf="!switchButton">Сохранить изменения</button>
+        <mat-checkbox class="example-margin" [(ngModel)]="mailStatus">
+            Рассылка активна
+        </mat-checkbox>
+        <button mat-raised-button *ngIf="switchButton" (click)="createAutoMailUsers()"
+            [disabled]="!nameOrg || !emailOrg">Добавить</button>
+        <button mat-raised-button style="color: green;" *ngIf="!switchButton" (click)="updateAutoMailUsers()">Сохранить
+            изменения</button>
     </div>
 </div>

@@ -10,9 +10,10 @@ export class AutomailComponent implements OnInit {
 
 
   autoMailUsers: AutoMailAnswer[];
+  idOrg
   nameOrg: string
   emailOrg: string
-  mailStatus: boolean;
+  mailStatus: boolean = false;
   switchButton: boolean = true;
 
   constructor(private autoMailservice: AutomailServiceService) { }
@@ -41,6 +42,10 @@ export class AutomailComponent implements OnInit {
     this.autoMailservice.CreateMail(new AutoMailAnswer(0, this.nameOrg, this.emailOrg, String(this.mailStatus))).subscribe({
       next: response => {
         this.getAutoMailUsers();
+        this.nameOrg = ''
+        this.emailOrg = ''
+        this.idOrg = ''
+        this.mailStatus = false
         if (response)
           console.log(response)
       },
@@ -50,14 +55,15 @@ export class AutomailComponent implements OnInit {
     })
   }
 
-  updateAutoMailUsers(element) {
-    this.autoMailservice.UpdateMail(new AutoMailAnswer(element, this.nameOrg, this.emailOrg, String(this.mailStatus))).subscribe({
+  updateAutoMailUsers() {
+    this.autoMailservice.UpdateMail(new AutoMailAnswer(this.idOrg, this.nameOrg, this.emailOrg, String(this.mailStatus))).subscribe({
       next: response => {
         if (response)
           this.getAutoMailUsers();
         console.log(response)
         this.nameOrg = ''
         this.emailOrg = ''
+        this.idOrg = ''
         this.mailStatus = false
         this.switchButton = !this.switchButton
       },
@@ -70,6 +76,7 @@ export class AutomailComponent implements OnInit {
     this.switchButton = !this.switchButton
     this.nameOrg = element.name
     this.emailOrg = element.email
+    this.idOrg = element.id
     this.mailStatus = Boolean(element.status)
   }
 
