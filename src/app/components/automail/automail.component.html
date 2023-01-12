@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="table-container">
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th>
+                        Название организации
+                    </th>
+                    <th>
+                        Email организации
+                    </th>
+                    <th>
+                        Статус рассылки
+                    </th>
+                    <th>
+                        Действие
+                    </th>
+                </tr>
+                <tr *ngFor="let i of autoMailUsers">
+                    <td>
+                        {{i.name}}
+                    </td>
+                    <td>
+                        {{i.email}}
+                    </td>
+                    <td>
+                        {{i.status}}
+                    </td>
+                    <td>
+                        <button mat-raised-button [matMenuTriggerFor]="menu">
+                            Действие
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item style="color: green;" (click)="switchUpdate(i)">
+                                Изменить
+                            </button>
+                            <button mat-menu-item style="color: rebeccapurple" *ngIf="i.status === 'true'"
+                                (click)="deactivateUser(i)">Деактивировать
+                            </button>
+                            <button mat-menu-item style="color: rgb(34, 143, 134)" *ngIf="i.status === 'false'"
+                                (click)="activateUser(i)">Активировать
+                            </button>
+                            <button mat-menu-item style="color: red;" (click)="deleteAutoMailUsers(i.id)">
+                                Удалить
+                            </button>
+                        </mat-menu>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="control-container">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Название организации</mat-label>
+            <input matInput [(ngModel)]="nameOrg">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email организации</mat-label>
+            <input matInput [(ngModel)]="emailOrg">
+        </mat-form-field>
+        <mat-checkbox class="example-margin" [(ngModel)]="mailStatus">Рассылка активна</mat-checkbox>
+        <button mat-raised-button *ngIf="switchButton">Добавить</button>
+        <button mat-raised-button style="color: green;" *ngIf="!switchButton">Сохранить изменения</button>
+    </div>
+</div>
