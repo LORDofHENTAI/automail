@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrlLog: 'http://192.168.1.51:7120',
-  apiUrl: 'http://192.168.1.51:7120/',
+  apiUrlLog: 'http://192.168.7.182:7120',
+  apiUrl: 'http://192.168.7.182:7120',
 };
 
 /*

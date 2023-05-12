@@ -12,11 +12,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { SBOOKComponent } from './components/sbook/sbook.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutomailComponent
+    AutomailComponent,
+    SBOOKComponent
   ],
   imports: [
     BrowserModule,

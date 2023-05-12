@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="table-container">
+        <div class="table-box">
+            <table>
+                <tr>
+                    <th>
+                        Подсеть
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        ФИО
+                    </th>
+                    <th>
+                        Действие
+                    </th>
+                </tr>
+                <tr *ngFor="let i of sBook">
+                    <td>
+                        {{i.storeloc}}
+                    </td>
+                    <td>
+                        {{i.email}}
+                    </td>
+                    <td>
+                        {{i.fio}}
+                    </td>
+                    <td>
+                        <button mat-raised-button [matMenuTriggerFor]="menu">
+                            Действие
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item style="color: green;" (click)="switchUpdate(i)">
+                                Изменить
+                            </button>
+                            <button mat-menu-item style="color: red;" (click)="deleteAutoMailUsers(i.id)">
+                                Удалить
+                            </button>
+                        </mat-menu>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="control-container">
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Подсеть магазина</mat-label>
+            <input matInput [(ngModel)]="storeloc">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Email директора</mat-label>
+            <input matInput [(ngModel)]="email">
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>ФИО Директора</mat-label>
+            <input matInput [(ngModel)]="fioDir">
+        </mat-form-field>
+        <button mat-raised-button *ngIf="switchButton" (click)="createAutoMailUsers()"
+            [disabled]="!storeloc || !email || !fioDir">Добавить</button>
+        <button mat-raised-button style="color: green;" *ngIf="!switchButton" (click)="updateAutoMailUsers()">Сохранить
+            изменения</button>
+    </div>
+</div>
